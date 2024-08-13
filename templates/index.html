@@ -17,7 +17,7 @@
         <form method="post">
             <div class="form-group">
                 <label for="batting_team">Select the batting team:</label>
-                <select id="batting_team" name="batting_team" class="form-control">
+                <select id="batting_team" name="batting_team" class="form-control" required>
                     {% for team in teams %}
                         <option value="{{ team }}" {% if team == batting_team %}selected{% endif %}>{{ team }}</option>
                     {% endfor %}
@@ -26,7 +26,7 @@
 
             <div class="form-group">
                 <label for="bowling_team">Select the bowling team:</label>
-                <select id="bowling_team" name="bowling_team" class="form-control">
+                <select id="bowling_team" name="bowling_team" class="form-control" required>
                     {% for team in teams %}
                         <option value="{{ team }}" {% if team == bowling_team %}selected{% endif %}>{{ team }}</option>
                     {% endfor %}
@@ -35,7 +35,7 @@
 
             <div class="form-group">
                 <label for="city">Select city:</label>
-                <select id="city" name="city" class="form-control">
+                <select id="city" name="city" class="form-control" required>
                     {% for city in cities %}
                         <option value="{{ city }}" {% if city == selected_city %}selected{% endif %}>{{ city }}</option>
                     {% endfor %}
@@ -44,22 +44,22 @@
 
             <div class="form-group">
                 <label for="target">Target:</label>
-                <input type="number" id="target" name="target" class="form-control" min="0" value="{{ target if target is not none else '' }}">
+                <input type="number" id="target" name="target" class="form-control" min="0" value="{{ target if target is not none else '' }}" required>
             </div>
 
             <div class="form-group">
                 <label for="score">Score:</label>
-                <input type="number" id="score" name="score" class="form-control" min="0" value="{{ score if score is not none else '' }}">
+                <input type="number" id="score" name="score" class="form-control" min="0" value="{{ score if score is not none else '' }}" required>
             </div>
 
             <div class="form-group">
                 <label for="wickets">Wickets:</label>
-                <input type="number" id="wickets" name="wickets" class="form-control" min="0" max="9" value="{{ wickets if wickets is not none else '' }}">
+                <input type="number" id="wickets" name="wickets" class="form-control" min="0" max="9" value="{{ wickets if wickets is not none else '' }}" required>
             </div>
 
             <div class="form-group">
                 <label for="overs">Overs completed:</label>
-                <input type="number" id="overs" name="overs" class="form-control" min="0" max="20" step="0.1" value="{{ overs if overs is not none else '' }}">
+                <input type="number" id="overs" name="overs" class="form-control" min="0" max="20" step="0.1" value="{{ overs if overs is not none else '' }}" required>
             </div>
 
             <button type="submit" class="btn btn-primary btn-block">Predict Probability</button>
