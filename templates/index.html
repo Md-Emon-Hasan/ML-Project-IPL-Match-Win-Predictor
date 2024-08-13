@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Win Predictor</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>IPL Match Win Predictor</h1>
+        <h2>Made by Emon Hasan</h2>
+        <form method="post">
+            <div class="form-group">
+                <label for="batting_team">Select the batting team:</label>
+                <select id="batting_team" name="batting_team" class="form-control">
+                    {% for team in teams %}
+                        <option value="{{ team }}" {% if team == batting_team %}selected{% endif %}>{{ team }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bowling_team">Select the bowling team:</label>
+                <select id="bowling_team" name="bowling_team" class="form-control">
+                    {% for team in teams %}
+                        <option value="{{ team }}" {% if team == bowling_team %}selected{% endif %}>{{ team }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="city">Select city:</label>
+                <select id="city" name="city" class="form-control">
+                    {% for city in cities %}
+                        <option value="{{ city }}" {% if city == selected_city %}selected{% endif %}>{{ city }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="target">Target:</label>
+                <input type="number" id="target" name="target" class="form-control" min="0" value="{{ target if target is not none else '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="score">Score:</label>
+                <input type="number" id="score" name="score" class="form-control" min="0" value="{{ score if score is not none else '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="wickets">Wickets:</label>
+                <input type="number" id="wickets" name="wickets" class="form-control" min="0" max="9" value="{{ wickets if wickets is not none else '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="overs">Overs completed:</label>
+                <input type="number" id="overs" name="overs" class="form-control" min="0" max="20" step="0.1" value="{{ overs if overs is not none else '' }}">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Predict Probability</button>
+        </form>
+
+        {% if r_1 is not none and r_2 is not none %}
+            <div class="result">
+                <h2>Prediction Results</h2>
+                <p><strong>Batting Team:</strong> {{ batting_team }}</p>
+                <p><strong>Bowling Team:</strong> {{ bowling_team }}</p>
+                <p><strong>City:</strong> {{ selected_city if selected_city is not none else 'N/A' }}</p>
+                <p><strong>Target:</strong> {{ target if target is not none else 'N/A' }}</p>
+                <p><strong>Score:</strong> {{ score if score is not none else 'N/A' }}</p>
+                <p><strong>Wickets:</strong> {{ wickets if wickets is not none else 'N/A' }}</p>
+                <p><strong>Overs Completed:</strong> {{ overs if overs is not none else 'N/A' }}</p>
+                <p><strong>Probability of Winning {{ batting_team }} </strong> : {{ r_2 }}%</p>
+                <p><strong>Probability of Winning {{ bowling_team }} </strong> : {{ r_1 }}%</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Emon Hasan. All rights reserved.</p>
+        <p>For more information, visit <a href="https://github.com/Md-Emon-Hasan">GitHub</a>.</p>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
