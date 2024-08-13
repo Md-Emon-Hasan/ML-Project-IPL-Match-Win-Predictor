@@ -1,7 +1,3 @@
-Here’s a similar design for the repository [IPL-Match-Win-Predictor](https://github.com/Md-Emon-Hasan/IPL-Match-Win-Predictor/tree/master):
-
----
-
 # IPL Match Win Predictor
 
 Welcome to the **IPL-Match-Win-Predictor** repository! This project focuses on predicting match outcomes for the Indian Premier League (IPL) using machine learning techniques. The application uses predictive models to forecast the likelihood of winning for teams based on various match features.
